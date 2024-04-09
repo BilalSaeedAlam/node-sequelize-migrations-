@@ -1,6 +1,8 @@
 const express = require("express");
 const app = express()
 
+require("./models")
+
 app.get("/", (req,res)=>{
     console.log("Hello World")
 });
