@@ -4,6 +4,8 @@
   "description": "Node js with MySQL database with all basic functionalities and migrations.",
   "main": "index.js",
   "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -20,5 +22,10 @@
   "bugs": {
     "url": "https://github.com/BilalSaeedAlam/node-sequelize-migrations-/issues"
   },
-  "homepage": "https://github.com/BilalSaeedAlam/node-sequelize-migrations-#readme"
+  "homepage": "https://github.com/BilalSaeedAlam/node-sequelize-migrations-#readme",
+  "dependencies": {
+    "express": "^4.19.2",
+    "mysql2": "^3.9.3",
+    "nodemon": "^3.1.0"
+  }
 }
