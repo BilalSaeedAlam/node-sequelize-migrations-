@@ -1,0 +1,24 @@
+{
+  "name": "node-sequelize-migrations",
+  "version": "1.0.0",
+  "description": "Node js with MySQL database with all basic functionalities and migrations.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BilalSaeedAlam/node-sequelize-migrations-.git"
+  },
+  "keywords": [
+    "node",
+    "sequelize",
+    "migrations"
+  ],
+  "author": "Bilal Ahmed",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/BilalSaeedAlam/node-sequelize-migrations-/issues"
+  },
+  "homepage": "https://github.com/BilalSaeedAlam/node-sequelize-migrations-#readme"
+}
