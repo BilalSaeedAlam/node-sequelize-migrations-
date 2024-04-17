@@ -11,4 +11,6 @@ const sequelize = new Sequelize('node_sequelize', 'root', null, {
     console.error('Unable to connect to the database:', error);
   }
 
+  sequelize.sync({force:true})
+
   module.exports = sequelize

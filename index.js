@@ -1,5 +1,13 @@
 const express = require("express");
 const app = express()
+
+
+
+// In case when you you use sync in main Modal index file
+// require("./models/user")
+// require("./models/contact")
+
+// In case when you call all Modals in this file like in bottom
 // const User = require("./models/user")
 // const Contact = require("./models/contact")
 
@@ -10,14 +18,18 @@ app.get("/", (req,res)=>{
     console.log("Hello World")
 });
 
+//** 
 // Call Modal
+// **
 
 // User.sync()
 // Contact.sync()
 // User.sync({force:true})
 // User.sync({alter:true})
 
+// **
 // Drop Table
+// **
 // User.drop()
 
 app.listen(3000, ()=>{
