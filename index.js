@@ -41,6 +41,8 @@ app.get("/users/:id", userController.getUserById);
 app.post("/users", userController.postUsers);
 app.delete("/users/:id", userController.deleteUserById);
 app.patch("/users/:id", userController.updateUserById);
+// QUERY ROUTE
+app.get("/query", userController.queryUser);
 
 app.listen(3000, () => {
   console.log("Server is running on port 3000");

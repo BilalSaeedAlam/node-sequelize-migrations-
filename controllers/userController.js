@@ -1,3 +1,4 @@
+const { Sequelize, Op, where } = require("sequelize");
 var db = require("../models");
 var User = db.User;
 
@@ -64,6 +65,48 @@ var updateUserById = async (req, res) => {
   res.status(200).json({ data: user });
 };
 
+// QUERY USER
+var queryUser = async (req, res) => {
+  // Craete Data with specific fields
+  //   const user = await User.create(
+  //     {
+  //       firstName: "Bilal",
+  //       lastName: "Ahmed",
+  //     },
+  //     { fields: ["lastName"] }
+  //   );
+  const user = await User.findAll({
+    // attributes: [
+    //"firstName",
+    //["lastName", "last_name"],
+    // [Sequelize.fn("COUNT", Sequelize.col("firstName")), "count"],
+    // ],
+    //*********************************/
+    // attributes: { exclude: ["lastName"] },
+    // attributes: {
+    //   include: ["id"],
+    // },
+    /**********************************/
+    // where: {
+    //   id: {
+    //     [Op.gt]: 3,
+    //   },
+    // [Op.or]: [{ id: { [Op.gt]: 0 } }, { lastName: "Alam" }],
+    //},
+    /***********************************/
+    // order: [
+    //   // Will escape title and validate DESC against a list of valid direction parameters
+    //   ["firstName", "DESC"],
+    // ],
+    /***********************************/
+    // group: "lastName",
+    /***********************************/
+    // offset: 3,
+    // limit: 3,
+  });
+  res.status(200).json({ data: user });
+};
+
 module.exports = {
   addUser,
   getUsers,
@@ -71,4 +114,5 @@ module.exports = {
   postUsers,
   deleteUserById,
   updateUserById,
+  queryUser,
 };
