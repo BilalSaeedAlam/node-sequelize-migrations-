@@ -36,6 +36,12 @@ app.get("/", (req, res) => {
 // User.drop()
 
 app.get("/add", userController.addUser);
+app.get("/users", userController.getUsers);
+app.get("/users/:id", userController.getUserById);
+app.post("/users", userController.postUsers);
+app.delete("/users/:id", userController.deleteUserById);
+app.patch("/users/:id", userController.updateUserById);
+
 app.listen(3000, () => {
   console.log("Server is running on port 3000");
 });

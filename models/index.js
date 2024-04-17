@@ -22,7 +22,7 @@ db.User = require("./user")(sequelize, DataTypes, Model);
 // Define Contact model
 db.Contact = require("./contact")(sequelize, DataTypes, Model);
 
-db.sequelize.sync({ force: true }).then(() => {
+db.sequelize.sync({ force: false }).then(() => {
   console.log("All models were synchronized successfully.");
 });
 module.exports = db;
