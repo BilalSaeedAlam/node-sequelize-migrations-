@@ -1,6 +1,7 @@
 const express = require("express");
 const app = express()
-const User = require("./models/user")
+// const User = require("./models/user")
+// const Contact = require("./models/contact")
 
 // Now using in Modal
 // require("./models")
@@ -10,7 +11,9 @@ app.get("/", (req,res)=>{
 });
 
 // Call Modal
- User.sync()
+
+// User.sync()
+// Contact.sync()
 // User.sync({force:true})
 // User.sync({alter:true})
 
