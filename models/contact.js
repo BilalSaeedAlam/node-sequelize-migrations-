@@ -2,10 +2,12 @@
 // **
 // Sequelize Define Method | Function Method
 // **
-const {  DataTypes } = require('sequelize');
-const sequelize = require("./index")
+// const {  DataTypes } = require('sequelize');
+// const sequelize = require("./index")
 
-const Contact = sequelize.define('Contact', {
+module.exports = (sequelize, DataTypes) => {
+
+  const Contact = sequelize.define('Contact', {
   // Model attributes are defined here
   permenentAddress: {
     type: DataTypes.STRING,
@@ -24,4 +26,5 @@ const Contact = sequelize.define('Contact', {
 // `sequelize.define` also returns the model
 console.log(Contact === sequelize.models.Contact); // true
 
-module.exports = Contact
+// module.exports = Contact
+}

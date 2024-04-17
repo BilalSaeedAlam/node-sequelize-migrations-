@@ -1,9 +1,10 @@
 // **
 // Modal with Class Method | Extand Modal
 // **
-const {  DataTypes, Model } = require('sequelize');
-const sequelize = require("./index")
+// const {  DataTypes, Model } = require('sequelize');
+// const sequelize = require("./index")
 
+module.exports = (sequelize, DataTypes, Model) =>{
 class User extends Model {}
 
 User.init({
@@ -24,8 +25,8 @@ User.init({
 
 // the defined model is the class itself
 console.log(User === sequelize.models.User); // true
-module.exports = User
-
+// module.exports = User
+}
 
 // **
 // Sequelize Define Method

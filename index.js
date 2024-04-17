@@ -1,6 +1,6 @@
 const express = require("express");
 const app = express()
-
+require("./models")
 
 
 // In case when you you use sync in main Modal index file
