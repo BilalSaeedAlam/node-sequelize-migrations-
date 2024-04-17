@@ -1,8 +1,10 @@
 const express = require("express");
-const app = express()
-require("./models")
+var bodyParser = require("body-parser");
+require("./models");
+var userController = require("./controllers/userController");
+const app = express();
 
-
+app.use(bodyParser.json());
 // In case when you you use sync in main Modal index file
 // require("./models/user")
 // require("./models/contact")
@@ -14,11 +16,12 @@ require("./models")
 // Now using in Modal
 // require("./models")
 
-app.get("/", (req,res)=>{
-    console.log("Hello World")
+app.get("/", (req, res) => {
+  console.log("Hello World");
+  res.send("Hello World.");
 });
 
-//** 
+//**
 // Call Modal
 // **
 
@@ -32,6 +35,7 @@ app.get("/", (req,res)=>{
 // **
 // User.drop()
 
-app.listen(3000, ()=>{
-    console.log("Server is running on port 3000")
-})
+app.get("/add", userController.addUser);
+app.listen(3000, () => {
+  console.log("Server is running on port 3000");
+});
