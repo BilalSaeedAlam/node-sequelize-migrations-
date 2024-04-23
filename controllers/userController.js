@@ -143,6 +143,33 @@ var getSetVirtuals = async (req, res) => {
   const user = await User.findAll({});
   res.status(200).json({ data: user });
 };
+
+// Validate User
+var validateUser = async (req, res) => {
+  let user = {};
+  let messages = {};
+  try {
+    user = await User.create({
+      firstName: "bilalsaeed",
+      lastName: "Ahmed",
+    });
+  } catch (error) {
+    let message;
+    error.errors.forEach((error) => {
+      switch (error.validatorKey) {
+        case "isAlpha":
+          message = "Only alphabets are allowed.";
+          break;
+        case "isLowercase":
+          message = "Only lower case allowed.";
+          break;
+      }
+      messages[error.path] = message;
+    });
+  }
+  res.status(200).json({ data: user, messages: messages });
+};
+
 module.exports = {
   addUser,
   getUsers,
@@ -153,4 +180,5 @@ module.exports = {
   queryUser,
   finderUser,
   getSetVirtuals,
+  validateUser,
 };

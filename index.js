@@ -47,6 +47,9 @@ app.get("/query", userController.queryUser);
 app.get("/finders", userController.finderUser);
 // GET SET VIRTUALS
 app.get("/get-set-virtuals", userController.getSetVirtuals);
+// Validation and Contraints
+app.get("/validate", userController.validateUser);
+
 app.listen(3000, () => {
   console.log("Server is running on port 3000");
 });
