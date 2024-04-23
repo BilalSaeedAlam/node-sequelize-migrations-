@@ -107,6 +107,42 @@ var queryUser = async (req, res) => {
   res.status(200).json({ data: user });
 };
 
+// FINDERS
+var finderUser = async (req, res) => {
+  const id = req.params.id;
+  //************************ */
+  // FIND ALL
+  // const user = await User.findAll({
+  //   where: {
+  //     lastName: "Alam",
+  //   },
+  // });
+  //************************ */
+  // FIND ONE
+  // const user = await User.findOne({
+  //   where: {
+  //     lastName: "Alam",
+  //   },
+  // });
+  //************************ */
+  // FIND BY PK
+  // const user = await User.findByPk(1);
+  //************************ */
+  // FIND BY CREATE
+  const [user, created] = await User.findOrCreate({
+    where: { firstName: "Bilal" },
+    defaults: {
+      lastName: "Alam",
+    },
+  });
+  res.status(200).json({ data: user, created: created });
+};
+
+// GET SET VITUALS
+var getSetVirtuals = async (req, res) => {
+  const user = await User.findAll({});
+  res.status(200).json({ data: user });
+};
 module.exports = {
   addUser,
   getUsers,
@@ -115,4 +151,6 @@ module.exports = {
   deleteUserById,
   updateUserById,
   queryUser,
+  finderUser,
+  getSetVirtuals,
 };

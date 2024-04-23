@@ -13,10 +13,23 @@ module.exports = (sequelize, DataTypes, Model) => {
       firstName: {
         type: DataTypes.STRING,
         allowNull: false,
+        get() {
+          const rawValue = this.getDataValue("firstName");
+          return rawValue ? rawValue.toUpperCase() : null;
+        },
       },
       lastName: {
         type: DataTypes.STRING,
         // allowNull defaults to true
+      },
+      fullName: {
+        type: DataTypes.VIRTUAL,
+        get() {
+          return `${this.firstName} ${this.lastName}`;
+        },
+        set(value) {
+          throw new Error("Do not try to set the `fullName` value!");
+        },
       },
       favoriteColor: {
         type: DataTypes.TEXT,

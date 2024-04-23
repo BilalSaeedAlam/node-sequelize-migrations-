@@ -43,7 +43,10 @@ app.delete("/users/:id", userController.deleteUserById);
 app.patch("/users/:id", userController.updateUserById);
 // QUERY ROUTE
 app.get("/query", userController.queryUser);
-
+// FINDERS ROUTE
+app.get("/finders", userController.finderUser);
+// GET SET VIRTUALS
+app.get("/get-set-virtuals", userController.getSetVirtuals);
 app.listen(3000, () => {
   console.log("Server is running on port 3000");
 });
