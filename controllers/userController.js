@@ -1,6 +1,7 @@
 const { Sequelize, Op, where, QueryTypes } = require("sequelize");
 var db = require("../models");
 var User = db.User;
+var Contact = db.Contact;
 
 var addUser = async (req, res) => {
   const jane = await User.create({ firstName: "Bilal", lastName: "Ahmed" });
@@ -210,6 +211,47 @@ var rawQuries = async (req, res) => {
   });
   res.status(200).json({ data: users });
 };
+
+// Relations
+const oneToOne = async (req, res) => {
+  // Create User with Contact
+  // const user = await User.create({ firstName: "Tanveer", lastName: "Alam" });
+  // if (user && user.id) {
+  //   await Contact.create({
+  //     permenentAddress: "abc",
+  //     currentAddress: "xyz",
+  //     user_id: user.id,
+  //   });
+  // }
+
+  //Get User with Contact
+  // const user = await User.findAll({
+  //   attributes: ["firstName", "lastName"],
+  //   include: [
+  //     {
+  //       model: Contact,
+  //       as: "contactDetails",
+  //       attributes: ["permenentAddress", "currentAddress"],
+  //     },
+  //   ],
+  //   where: { id: 1 },
+  // }); // By default it userID but we set user_id so we will set foreignKey
+
+  // Reverser Get Contact with User using Belongs to
+  const user = await Contact.findAll({
+    attributes: ["permenentAddress", "currentAddress"],
+    include: [
+      {
+        model: User,
+        as: "userDetails",
+        attributes: ["firstName", "lastName"],
+      },
+    ],
+    where: { id: 1 },
+  });
+  res.status(200).json({ data: user });
+};
+
 module.exports = {
   addUser,
   getUsers,
@@ -222,4 +264,5 @@ module.exports = {
   getSetVirtuals,
   validateUser,
   rawQuries,
+  oneToOne,
 };

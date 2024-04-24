@@ -16,11 +16,13 @@ const db = {};
 db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 
-// Define User model
+// Modals
 db.User = require("./user")(sequelize, DataTypes, Model);
-
-// Define Contact model
 db.Contact = require("./contact")(sequelize, DataTypes, Model);
+
+// Relations
+db.User.hasOne(db.Contact, { foreignKey: "user_id", as: "contactDetails" });
+db.Contact.belongsTo(db.User, { foreignKey: "user_id", as: "userDetails" });
 
 db.sequelize.sync({ force: false }).then(() => {
   console.log("All models were synchronized successfully.");

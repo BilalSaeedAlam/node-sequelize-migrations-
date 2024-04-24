@@ -51,6 +51,8 @@ app.get("/get-set-virtuals", userController.getSetVirtuals);
 app.get("/validate", userController.validateUser);
 // RAW QUERIES
 app.get("/raw-quries", userController.rawQuries);
+// RELATIONS
+app.get("/one-to-one", userController.oneToOne);
 
 app.listen(3000, () => {
   console.log("Server is running on port 3000");
