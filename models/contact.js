@@ -17,9 +17,9 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
         // allowNull defaults to true
       },
-      user_id: {
-        type: DataTypes.INTEGER,
-      },
+      // user_id: {
+      //   type: DataTypes.INTEGER,
+      // },
     },
     {
       // Other model options go here
