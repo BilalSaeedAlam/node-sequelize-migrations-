@@ -21,7 +21,10 @@ db.User = require("./user")(sequelize, DataTypes, Model);
 db.Contact = require("./contact")(sequelize, DataTypes, Model);
 
 // Relations
-db.User.hasOne(db.Contact, { foreignKey: "user_id", as: "contactDetails" });
+// db.User.hasOne(db.Contact, { foreignKey: "user_id", as: "contactDetails" });
+// db.Contact.belongsTo(db.User, { foreignKey: "user_id", as: "userDetails" });
+
+db.User.hasMany(db.Contact, { foreignKey: "user_id", as: "contactDetails" });
 db.Contact.belongsTo(db.User, { foreignKey: "user_id", as: "userDetails" });
 
 db.sequelize.sync({ force: false }).then(() => {

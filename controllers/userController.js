@@ -251,7 +251,38 @@ const oneToOne = async (req, res) => {
   });
   res.status(200).json({ data: user });
 };
+const oneToMany = async (req, res) => {
+  // const user = await Contact.create({
+  //   permenentAddress: "def",
+  //   currentAddress: "ghi",
+  //   user_id: 1,
+  // });
 
+  // const user = await User.findAll({
+  //   attributes: ["firstName", "lastName"],
+  //   include: [
+  //     {
+  //       model: Contact,
+  //       as: "contactDetails",
+  //       attributes: ["permenentAddress", "currentAddress"],
+  //     },
+  //   ],
+  //   where: { id: 1 },
+  // });
+  // Reverser Get Contact with User using Belongs to
+  const user = await Contact.findAll({
+    attributes: ["permenentAddress", "currentAddress"],
+    include: [
+      {
+        model: User,
+        as: "userDetails",
+        attributes: ["firstName", "lastName"],
+      },
+    ],
+    // where: { id: 1 },
+  });
+  res.status(200).json({ data: user });
+};
 module.exports = {
   addUser,
   getUsers,
@@ -265,4 +296,5 @@ module.exports = {
   validateUser,
   rawQuries,
   oneToOne,
+  oneToMany,
 };

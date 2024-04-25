@@ -53,6 +53,7 @@ app.get("/validate", userController.validateUser);
 app.get("/raw-quries", userController.rawQuries);
 // RELATIONS
 app.get("/one-to-one", userController.oneToOne);
+app.get("/one-to-many", userController.oneToMany);
 
 app.listen(3000, () => {
   console.log("Server is running on port 3000");
