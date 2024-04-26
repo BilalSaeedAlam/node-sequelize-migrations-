@@ -31,18 +31,18 @@ db.UserContacts = require("./userContacts")(
 // db.Contact.belongsTo(db.User, { foreignKey: "user_id", as: "userDetails" });
 
 // Relations One to Many
-// db.User.hasMany(db.Contact, { foreignKey: "user_id", as: "contactDetails" });
-// db.Contact.belongsTo(db.User, { foreignKey: "user_id", as: "userDetails" });
+db.User.hasMany(db.Contact, { foreignKey: "user_id", as: "contactDetails" });
+db.Contact.belongsTo(db.User, { foreignKey: "user_id", as: "userDetails" });
 
 // Relations Many to Many
-db.User.belongsToMany(db.Contact, {
-  through: db.UserContacts,
-  foreignKey: "user_id",
-});
-db.Contact.belongsToMany(db.User, {
-  through: db.UserContacts,
-  foreignKey: "contact_id",
-});
+// db.User.belongsToMany(db.Contact, {
+//   through: db.UserContacts,
+//   foreignKey: "user_id",
+// });
+// db.Contact.belongsToMany(db.User, {
+//   through: db.UserContacts,
+//   foreignKey: "contact_id",
+// });
 
 db.sequelize.sync({ force: false }).then(() => {
   console.log("All models were synchronized successfully.");

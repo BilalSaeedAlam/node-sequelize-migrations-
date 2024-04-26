@@ -338,6 +338,42 @@ const deleteUser = async (req, res) => {
   let user = await User.findAll({ paranoid: false });
   res.status(200).json({ data: user });
 };
+
+const loadingUser = async (req, res) => {
+  // Create User with Contact
+  // const user = await User.create({ firstName: "Bilal", lastName: "Alam" });
+  // if (user && user.id) {
+  //   await Contact.create({
+  //     permenentAddress: "def",
+  //     currentAddress: "xyz",
+  //     user_id: user.id,
+  //   });
+  // }
+
+  // Eager Loading
+  // let user = await User.findOne({
+  //   where: { id: 2 },
+  //   attributes: ["firstName", "lastName"],
+  //   include: [
+  //     {
+  //       model: Contact,
+  //       as: "contactDetails",
+  //       attributes: ["permenentAddress", "currentAddress"],
+  //     },
+  //   ],
+  // });
+
+  // Lazy Loading
+  // In lazy loading if you have changed table name using AS then you will user function like that getContactDetails
+  let user = await User.findOne({
+    where: { id: 2 },
+  });
+  if (!user) {
+    return res.status(404).json({ error: "User not found" });
+  }
+  let contacts = await user.getContactDetails();
+  res.status(200).json({ data: user, contacts: contacts });
+};
 module.exports = {
   addUser,
   getUsers,
@@ -354,4 +390,5 @@ module.exports = {
   oneToMany,
   manyToMany,
   deleteUser,
+  loadingUser,
 };
