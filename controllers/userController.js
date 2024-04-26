@@ -315,6 +315,29 @@ const manyToMany = async (req, res) => {
   // });
   res.status(200).json({ data: user });
 };
+
+const deleteUser = async (req, res) => {
+  // CRAETE USER
+  // let user = await User.create({ firstName: "Bilal", lastName: "Alam" });
+
+  // SOFT DELETE USER
+  // let user = await User.destroy({
+  //   where: {
+  //     id: 3,
+  //   },
+  //   // force: true, // Will delete from database HARD delete
+  // });
+
+  // RESTORE USER
+  // let user = await User.restore({
+  //   where: {
+  //     id: 3,
+  //   },
+  // });
+  // When user is soft deleted then it will not get that data to get that user paranoid false
+  let user = await User.findAll({ paranoid: false });
+  res.status(200).json({ data: user });
+};
 module.exports = {
   addUser,
   getUsers,
@@ -330,4 +353,5 @@ module.exports = {
   oneToOne,
   oneToMany,
   manyToMany,
+  deleteUser,
 };

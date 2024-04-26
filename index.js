@@ -55,6 +55,8 @@ app.get("/raw-quries", userController.rawQuries);
 app.get("/one-to-one", userController.oneToOne);
 app.get("/one-to-many", userController.oneToMany);
 app.get("/many-to-many", userController.manyToMany);
+// PARANOID SOFT DELETE
+app.get("/paranoid", userController.deleteUser);
 
 app.listen(3000, () => {
   console.log("Server is running on port 3000");
