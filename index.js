@@ -59,6 +59,8 @@ app.get("/many-to-many", userController.manyToMany);
 app.get("/paranoid", userController.deleteUser);
 // LOADING
 app.get("/loading", userController.loadingUser);
+// Eager Loading
+app.get("/eager-loading", userController.eagerLoading);
 
 app.listen(3000, () => {
   console.log("Server is running on port 3000");

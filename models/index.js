@@ -2,7 +2,7 @@ const { Sequelize, DataTypes, Model } = require("sequelize");
 const sequelize = new Sequelize("node_sequelize", "root", null, {
   host: "127.0.0.1",
   dialect: "mysql",
-  logging: false, // To stop logging info in cosole
+  logging: true, // To stop logging info in cosole
 });
 
 try {
@@ -25,6 +25,7 @@ db.UserContacts = require("./userContacts")(
   db.User,
   db.Contact
 );
+db.Educaton = require("./education")(sequelize, DataTypes, Model);
 
 // Relations One to One
 // db.User.hasOne(db.Contact, { foreignKey: "user_id", as: "contactDetails" });
@@ -33,6 +34,15 @@ db.UserContacts = require("./userContacts")(
 // Relations One to Many
 db.User.hasMany(db.Contact, { foreignKey: "user_id", as: "contactDetails" });
 db.Contact.belongsTo(db.User, { foreignKey: "user_id", as: "userDetails" });
+
+db.Contact.hasMany(db.Educaton, {
+  foreignKey: "contact_id",
+  as: "educationDetails",
+});
+db.Educaton.belongsTo(db.Contact, {
+  foreignKey: "contact_id",
+  as: "contactDetails",
+});
 
 // Relations Many to Many
 // db.User.belongsToMany(db.Contact, {

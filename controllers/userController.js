@@ -2,6 +2,7 @@ const { Sequelize, Op, where, QueryTypes } = require("sequelize");
 var db = require("../models");
 var User = db.User;
 var Contact = db.Contact;
+var Education = db.Educaton;
 
 var addUser = async (req, res) => {
   const jane = await User.create({ firstName: "Bilal", lastName: "Ahmed" });
@@ -374,6 +375,71 @@ const loadingUser = async (req, res) => {
   let contacts = await user.getContactDetails();
   res.status(200).json({ data: user, contacts: contacts });
 };
+
+// EAGER LOADING ADVANCE
+const eagerLoading = async (req, res) => {
+  // Create User with Contact
+  // const user = await User.create({ firstName: "Bilal", lastName: "Alam" });
+  // if (user && user.id) {
+  //   await Contact.create({
+  //     permenentAddress: "def",
+  //     currentAddress: "xyz",
+  //     user_id: user.id,
+  //   });
+  // }
+
+  // Eager Loading
+  // With Multiple Joins like Inner | Outer | Left | Right
+  // Access data with multiple join model like User to Contact and User to Education
+  // let user = await User.findOne({
+  //   where: { id: 2 },
+  //   attributes: ["firstName", "lastName"],
+  //   //include: [
+  // {
+  //   model: Contact,
+  //   as: "contactDetails",
+  //   attributes: ["permenentAddress", "currentAddress"],
+  //   // required: true, // For inner join | Outer:false
+  //   // right: true, // For Right Joing
+  // },
+  // {
+  //   model: Education,
+  //   as: "educationDetails",
+  //   attributes: ["class_name", "grade", "passing_year"],
+  //   // required: true, // For inner join | Outer:false
+  //   // right: true, // For Right Joing
+  // },
+  // ],
+  //   include: { all: true }, // For default results with left join
+  // });
+
+  // Nested Eager Loading
+  // With Multiple Joins like Inner | Outer | Left | Right
+  // Access data with multiple join model like User to Contact and User to Education
+  // let user = await User.findAll({
+  //   where: { id: 2 },
+  //   attributes: ["firstName", "lastName"],
+  //   include: [
+  //     {
+  //       model: Contact,
+  //       as: "contactDetails",
+  //       attributes: ["permenentAddress", "currentAddress"],
+  //       include: [
+  //         {
+  //           model: Education,
+  //           as: "educationDetails",
+  //           attributes: ["class_name", "grade", "passing_year"],
+  //         },
+  //       ],
+  //     },
+  //   ],
+  // });
+  let user = await User.findAll({
+    include: { all: true, nested: true },
+  });
+  res.status(200).json({ data: user });
+};
+
 module.exports = {
   addUser,
   getUsers,
@@ -391,4 +457,5 @@ module.exports = {
   manyToMany,
   deleteUser,
   loadingUser,
+  eagerLoading,
 };
