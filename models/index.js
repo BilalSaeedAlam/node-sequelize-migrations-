@@ -32,16 +32,19 @@ db.Educaton = require("./education")(sequelize, DataTypes, Model);
 // db.Contact.belongsTo(db.User, { foreignKey: "user_id", as: "userDetails" });
 
 // Relations One to Many
-db.User.hasMany(db.Contact, { foreignKey: "user_id", as: "contactDetails" });
-db.Contact.belongsTo(db.User, { foreignKey: "user_id", as: "userDetails" });
+db.User.hasMany(db.Contact, { foreignKey: "user_id", as: "contacts" });
+db.contactUser = db.Contact.belongsTo(db.User, {
+  foreignKey: "user_id",
+  as: "users",
+});
 
 db.Contact.hasMany(db.Educaton, {
   foreignKey: "contact_id",
-  as: "educationDetails",
+  as: "educations",
 });
 db.Educaton.belongsTo(db.Contact, {
   foreignKey: "contact_id",
-  as: "contactDetails",
+  as: "contacts",
 });
 
 // Relations Many to Many

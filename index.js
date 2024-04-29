@@ -61,6 +61,8 @@ app.get("/paranoid", userController.deleteUser);
 app.get("/loading", userController.loadingUser);
 // Eager Loading
 app.get("/eager-loading", userController.eagerLoading);
+// Craetor Association
+app.get("/creator", userController.creatorUser);
 
 app.listen(3000, () => {
   console.log("Server is running on port 3000");

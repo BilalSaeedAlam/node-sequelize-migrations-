@@ -440,6 +440,40 @@ const eagerLoading = async (req, res) => {
   res.status(200).json({ data: user });
 };
 
+// CREATE DATA WITH ASSOCIACTIONS
+const creatorUser = async (req, res) => {
+  // Create User with Associations
+
+  // OLD METHOD
+  // const user = await User.create({ firstName: "Bilal", lastName: "Alam" });
+  // if (user && user.id) {
+  //   await Contact.create({
+  //     permenentAddress: "def",
+  //     currentAddress: "xyz",
+  //     user_id: user.id,
+  //   });
+  // }
+
+  // RELATION METHOD
+  await Contact.create(
+    {
+      permenentAddress: "def",
+      currentAddress: "xyz",
+      users: {
+        firstName: "Bilal",
+        lastName: "Alam",
+      },
+    },
+    {
+      include: [db.contactUser],
+    }
+  );
+  let user = await User.findAll({
+    include: { model: Contact, as: "contacts" },
+  });
+  res.status(200).json({ data: user });
+};
+
 module.exports = {
   addUser,
   getUsers,
@@ -458,4 +492,5 @@ module.exports = {
   deleteUser,
   loadingUser,
   eagerLoading,
+  creatorUser,
 };
